@@ -1,3 +1,11 @@
 body {
   margin: 0;
+  padding: 0;
 }
+.carousel-height {
+  height: 40vh;
+}
+.carousel-img {
+  min-height: 40vh;
+}
+@media only screen and (max-width: 600px) {}

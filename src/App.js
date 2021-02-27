@@ -1,14 +1,18 @@
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import Header from './components/Header';
+import CarouselHead from './components/CarouselHead';
+import Main from './components/Main';
+import Footer from './components/Footer';
+
 function App() {
   return (
     <div className="App">
       <Container>
-        <Row className="justify-content-center">
-            <h2>Challenge</h2>
-        </Row>
-        
-      </Container>
+        <Header />
+        <CarouselHead />
+        <Main />
+        <Footer />
+      </Container> 
     </div>
   );
 }
