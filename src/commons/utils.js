@@ -22,8 +22,8 @@ export const filterByString = (arr, string) => {
   })
 };
 
-export const getBreedAndSubBreed = (breed) => {
+export const getBreedAndSubBreed = (breed, concat = '/') => {
   return breed.toString()
-    .replace(' ','/')
+    .replace(' ', concat)
     .toLowerCase();
 };

@@ -1,13 +1,14 @@
 import React from 'react-dom';
+import { Link } from 'react-router-dom'
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
 const Header = () => {
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#home">Dog Team</Navbar.Brand>
+      <Link to="/">Dog Team</Link>
       <Nav>
-        <Nav.Link href="#link">My Team</Nav.Link>
+        <Link to="/my-team">My Team</Link>
       </Nav>
     </Navbar>
   );

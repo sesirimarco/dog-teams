@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import { filterByString, getBreedAndSubBreed } from '../commons/utils';
 
@@ -18,9 +19,9 @@ const List = ({items, filter}) => {
               <tr key={index}>
                 <td>{index}</td>
                 <td>
-                  <a href={`/breed/${getBreedAndSubBreed(item)}`}>
+                  <Link to={`/breed/${getBreedAndSubBreed(item, '-')}`}>
                     {item.toString()}
-                  </a>
+                  </Link>
                 </td>
               </tr>      
             )
