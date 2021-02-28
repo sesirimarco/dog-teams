@@ -1,9 +1,3 @@
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Header from './components/Header';
 import CarouselHead from './components/CarouselHead';
@@ -12,6 +6,11 @@ import Footer from './components/Footer';
 import PageNotFound from './components/PageNotFound';
 import Breed from './components/Breed';
 import MyTeam from './components/MyTeam';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 function App() {
   return (
@@ -33,7 +32,6 @@ function App() {
             <PageNotFound />
           </Route>
         </Switch>
-        
         <Footer />
       </Container> 
     </Router>

@@ -1,3 +1,4 @@
+import { userTeamLocalStorage } from './configs';
 //Utils:
 export const adaptToSuggestionsBreeds = (breeds) => {
   const tmpBreedsList = Object.entries(breeds)
@@ -33,3 +34,31 @@ export const capitalizeText = (str) => {
     return name.charAt(0).toUpperCase() + name.substring(1, name.length);
   }).join(' ');
 }
+// Local Storage Team
+export const getDogById = (id) => {
+  const team = getLocalStorageTeam();
+  return team.find(dog => dog.id === id);
+};
+
+export const addDogToMyTeam = ({breed, img, id}) => {
+  const team = getLocalStorageTeam();
+  team.push({breed, img, id});
+  localStorage.setItem(userTeamLocalStorage, JSON.stringify(team));
+};
+
+export const getLocalStorageTeam = () => {
+  if(localStorage.getItem(userTeamLocalStorage)) {
+    return JSON.parse(localStorage.getItem(userTeamLocalStorage));
+  }else {
+    localStorage.setItem(userTeamLocalStorage, '[]');
+    return JSON.parse(localStorage.getItem(userTeamLocalStorage));
+  }
+};
+//Team logic
+export const checkMaxDogByTeam = (max = 10) => {
+  return (getLocalStorageTeam().length < max);
+};
+
+export const checkMaxBreeds = (breed, max = 3) => {
+  return (getLocalStorageTeam().filter(dog => dog.breed === breed).length < max);
+};
