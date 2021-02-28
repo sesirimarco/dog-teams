@@ -37,14 +37,17 @@ const Breed = () => {
           addDogToMyTeam(dog);
           setTeam(getLocalStorageTeam());
         } else {
+          //todo: custom alert with 'go to my team' link
           alert(
             `You can't add more than ${MAX_BREEAD_BY_TEAM} dog(s) with the same breed!`
           );
         }
       } else {
+        //todo: custom alert with 'go to my team' link
         alert(`You can't add more than ${MAX_DOGS_BY_TEAM} dog(s) to your team!`);
       }
     } else {
+      //todo: custom alert with 'go to my team' link
       alert('This dog already exist in your team!');
     }
   };

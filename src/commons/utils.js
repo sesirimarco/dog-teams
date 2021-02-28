@@ -46,6 +46,16 @@ export const addDogToMyTeam = ({breed, img, id}) => {
   localStorage.setItem(userTeamLocalStorage, JSON.stringify(team));
 };
 
+export const removeDogFromMyTeam = (id) => {
+  const team = getLocalStorageTeam();
+  localStorage.setItem(
+    userTeamLocalStorage, 
+    JSON.stringify(
+      team.filter(dog => (dog.id !== id))
+    )
+  );
+};
+
 export const getLocalStorageTeam = () => {
   if(localStorage.getItem(userTeamLocalStorage)) {
     return JSON.parse(localStorage.getItem(userTeamLocalStorage));
@@ -54,6 +64,7 @@ export const getLocalStorageTeam = () => {
     return JSON.parse(localStorage.getItem(userTeamLocalStorage));
   }
 };
+
 //Team logic
 export const checkMaxDogByTeam = (max = 10) => {
   return (getLocalStorageTeam().length < max);
