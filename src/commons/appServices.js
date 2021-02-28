@@ -1,5 +1,6 @@
 import { apiUrl } from './configs';
 import { getBreedAndSubBreed } from './utils';
+
 export const searchByBreedName = async (breed) => {
   
   try {
@@ -10,6 +11,7 @@ export const searchByBreedName = async (breed) => {
     throw e;
   }
 };
+
 export const getAllBreeds = async () => {
   try {
     const response = await fetch(`${apiUrl}breeds/list/all`);
@@ -18,4 +20,15 @@ export const getAllBreeds = async () => {
   } catch (e) {
     throw e;
   };
+}
+
+export const getAllImagesFromBreed = async (breed) => {
+  try {
+    const response = await fetch(`${apiUrl}breed/${getBreedAndSubBreed(breed, '/', '-')}/images`);
+    const data = await response.json();
+    return data.message;
+  } catch (e) {
+    throw e;
+  };
+  
 }

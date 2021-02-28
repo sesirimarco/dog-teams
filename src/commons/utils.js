@@ -22,8 +22,14 @@ export const filterByString = (arr, string) => {
   })
 };
 
-export const getBreedAndSubBreed = (breed, concat = '/') => {
+export const getBreedAndSubBreed = (breed, concat = '/', separator = ' ') => {
   return breed.toString()
-    .replace(' ', concat)
+    .replace(separator, concat)
     .toLowerCase();
 };
+
+export const capitalizeText = (str) => {
+  return str.split(' ').map(name => {
+    return name.charAt(0).toUpperCase() + name.substring(1, name.length);
+  }).join(' ');
+}

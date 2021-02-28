@@ -8,4 +8,15 @@ body {
 .carousel-img {
   min-height: 40vh;
 }
-@media only screen and (max-width: 600px) {}
+.text-align-center {
+  text-align: center;
+}
+.card-width {
+  width: 18rem;
+}
+@media only screen and (max-width: 991) {}
+@media only screen and (max-width: 574px) {
+  .card-width {
+    width: 100%;
+  } 
+}
