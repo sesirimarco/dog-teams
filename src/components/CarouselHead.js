@@ -12,8 +12,8 @@ const CarouselHead = () => {
           
         />
         <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h3 className="carousel-title">Choose your friend!</h3>
+          <p className="carousel-description">Select a friend from the list of breeds.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item className="carousel-height">
@@ -24,8 +24,8 @@ const CarouselHead = () => {
           
         />
         <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h3 className="carousel-title">Make a team!</h3>
+          <p className="carousel-description">Make a team with the best.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item className="carousel-height">
@@ -36,10 +36,8 @@ const CarouselHead = () => {
           
         />
         <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
+          <h3 className="carousel-title">Have a lot of fun!</h3>
+          <p className="carousel-description">Please strongly encourage you to have fun.</p>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
