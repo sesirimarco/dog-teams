@@ -4,9 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
-import { searchByBreedName } from '../commons/appServices';
 
-const Search = ({ suggestionsBreeds, handlerSearch }) => {
+const Search = ({ suggestionsBreeds, handlerSearch, handlerSelectBreed }) => {
   const [breed, setBreed] = useState();
   return (
     <Form>
@@ -15,7 +14,6 @@ const Search = ({ suggestionsBreeds, handlerSearch }) => {
           onInputChange={handlerSearch}
           id="basic-example"
           onChange={(breeds) => {
-            console.log(breeds)
             setBreed(breeds);
             handlerSearch(breeds.toString());
           }}
@@ -29,12 +27,10 @@ const Search = ({ suggestionsBreeds, handlerSearch }) => {
             type="submit"
             onClick={(e) => {
               e.preventDefault();
-              searchByBreedName(breed).then((data) => {
-                handlerSearch(data);
-              });
+              handlerSelectBreed(breed);
             }}
           >
-            Search
+            Go!
           </Button>
         </InputGroup.Append>
       </InputGroup>
