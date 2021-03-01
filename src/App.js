@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Header from './components/Header';
 import CarouselHead from './components/CarouselHead';
@@ -13,20 +14,21 @@ import {
 } from "react-router-dom";
 
 function App() {
+  const [teamAmount, setTeamAmount] = useState(0);
   return (
     <Router>
-      <Container>
-        <Header />
+      <Container className="container-heigth">
+        <Header teamAmount={teamAmount}/>
         <Switch>
           <Route exact path="/">
             <CarouselHead />
             <Main />
           </Route>
           <Router path="/my-team">
-            <MyTeam />
+            <MyTeam handlerTeamAmount={(teamAmount) => setTeamAmount(teamAmount)}/>
           </Router>
           <Route path="/breed/:name">
-            <Breed />
+            <Breed handlerTeamAmount={(teamAmount) => setTeamAmount(teamAmount)}/>
           </Route>
           <Route path="*">
             <PageNotFound />

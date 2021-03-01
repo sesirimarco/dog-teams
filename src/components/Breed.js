@@ -15,7 +15,7 @@ import {
 } from '../commons/utils';
 
 //TODO: loading for images
-const Breed = () => {
+const Breed = ({handlerTeamAmount}) => {
   
   const { name } = useParams();
   const [ images, setImages ] = useState([]);
@@ -29,6 +29,9 @@ const Breed = () => {
     getAllImagesFromBreed(name)
     .then(images => setImages(images));
   }, []);
+  useEffect(() => {
+      handlerTeamAmount(team.length);
+  }, [team]);
 
   const handlerAddDog = (dog) => {
     if (!getDogById(dog.id)) {
@@ -53,9 +56,8 @@ const Breed = () => {
   };
   return (
     <>
-      <h2 className="display-5 py-4">{capitalizeText(getBreedAndSubBreed(name, ' ', '-'))}</h2>
-      <hr />
-      <CardColumns className="py-4 text-align-center">
+      <h2 className="display-5 pt-4">{capitalizeText(getBreedAndSubBreed(name, ' ', '-'))}</h2>
+      <CardColumns className="pt-4 text-align-center">
         {
           images.length > 0 &&
           images.map((img, index) => (
@@ -66,7 +68,7 @@ const Breed = () => {
                   {
                     team.find(dog => (dog.id === idBreedPrefix + '_' + index))
                     ? <Button 
-                        variant="success" 
+                        className="btn-success"
                         block
                         onClick={() => {}}
                       >In your team</Button>
