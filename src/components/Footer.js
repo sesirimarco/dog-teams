@@ -2,9 +2,11 @@ import React from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 const Footer = () => {
   return (
-    <Jumbotron className="text-center">
-      footer
-    </Jumbotron>
+    <footer>
+      <Jumbotron className="text-center">
+        &copy; Dog Team 2021
+      </Jumbotron>
+    </footer>
   )
 };
 export default Footer;
