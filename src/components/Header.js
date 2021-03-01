@@ -1,6 +1,5 @@
 import React from 'react-dom';
 import { Link } from 'react-router-dom';
-import { getLocalStorageTeam } from '../commons/utils';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 

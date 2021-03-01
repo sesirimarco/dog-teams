@@ -1,5 +1,4 @@
 import { useState, useEffect, Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import CardColumns from 'react-bootstrap/CardColumns';
 import Button from 'react-bootstrap/Button';
@@ -16,6 +15,7 @@ const MyTeam = ({handlerTeamAmount}) => {
   }, []);
   useEffect(() => {
       handlerTeamAmount(team.length);
+      // eslint-disable-next-line react-hooks/exhaustive-deps,
   }, [team]);
   return (
     <>

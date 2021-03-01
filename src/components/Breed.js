@@ -28,9 +28,12 @@ const Breed = ({handlerTeamAmount}) => {
     setTeam(getLocalStorageTeam());
     getAllImagesFromBreed(name)
     .then(images => setImages(images));
+    // eslint-disable-next-line react-hooks/exhaustive-deps,
   }, []);
+  
   useEffect(() => {
       handlerTeamAmount(team.length);
+      // eslint-disable-next-line react-hooks/exhaustive-deps,
   }, [team]);
 
   const handlerAddDog = (dog) => {

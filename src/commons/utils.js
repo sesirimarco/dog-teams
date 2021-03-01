@@ -17,9 +17,7 @@ export const adaptToSuggestionsBreeds = (breeds) => {
 
 export const filterByString = (arr, string) => {
   return arr.filter(item => {
-    if(item.substring(0, string.length) === string){
-      return item;
-    }
+    return (item.substring(0, string.length) === string)
   })
 };
 
