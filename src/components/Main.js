@@ -27,7 +27,9 @@ const Main = () => {
           suggestionsBreeds={allBreeds}
           handlerSearch={(result) => { setSearchFilter(result)}}
           handlerSelectBreed={(result) => { 
-            history.push(`/breed/${getBreedAndSubBreed(result, '-')}`);
+            if(result?.length > 0) {
+              history.push(`/breed/${getBreedAndSubBreed(result, '-')}`);
+            }
           }}
         />
         <List 
