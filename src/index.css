@@ -1,9 +1,68 @@
+:root {
+  --main-bg-color: #FFE8D2;
+  --footer-bg-color: #BCA79D;
+  --font-color: #54433A;
+  --font-color-light: #FFE8D2;
+  --link-color: #F37123;
+  --button-color: #B5866E;
+  --button-color-success: #00B596;
+}
 body {
   margin: 0;
   padding: 0;
+  background-color: var(--main-bg-color);
+  color: var(--font-color);
+  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  
+}
+a {
+  color: var(--link-color);
+}
+.card {
+  background-color: var(--main-bg-color);
+}
+.btn {
+   background-color: var(--button-color);
+   color: var(--font-color-light);
+}
+.btn-success {
+  background-color: var(--button-color-success);
+}
+.nav-bg, .navbar-brand{
+  background-color: var(--footer-bg-color)!important;
+  border-radius: 5px;
+  color: var(--font-color)!important;
+}
+.jumbotron {
+  background-color: var(--footer-bg-color);
+  margin: 0;
+}
+.container-heigth {
+  min-height:100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+.nav-brand-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 1rem;;
+}
+.nav-brand-my-team {
+  font-size: 1rem;
+  padding: 1rem;
+  font-weight: 500;
+}
+.nav-brand-my-team-amount {
+  font-size: 0.8rem;
+  padding-left: 0.2rem;
+}
+.nav-align-items {
+  justify-content: space-between;
 }
 .carousel-height {
   height: 40vh;
+  max-height: 40vh;
 }
 .carousel-img {
   min-height: 40vh;
@@ -23,6 +82,9 @@ body {
 }
 .card-width {
   width: 18rem;
+}
+.main {
+  min-height: 19.5rem;
 }
 @media only screen and (max-width: 991) {}
 @media only screen and (max-width: 574px) {

@@ -21,13 +21,7 @@ const Main = () => {
 
   return (
     <>
-    <Row className="welcome text-center pt-4">
-      <Col >
-        <h3 className="display-4">Pick up your breed</h3>
-        <hr/>
-      </Col>
-    </Row>
-    <Row className="py-5 text-center">
+    <Row className="pt-5 text-center main">
       <Col className="col-sm-12">
         <Search 
           suggestionsBreeds={allBreeds}
@@ -42,7 +36,6 @@ const Main = () => {
         />
       </Col>
     </Row>
-    <hr/>
   </>
   );
 };

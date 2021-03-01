@@ -5,7 +5,7 @@ import { filterByString, getBreedAndSubBreed } from '../commons/utils';
 
 const List = ({items, filter}) => {
   return (
-    <Table striped bordered hover size="sm">
+    <Table striped borderless hover size="sm">
       <thead>
         <tr>
           <th>#</th>
