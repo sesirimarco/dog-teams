@@ -6,6 +6,9 @@
   --link-color: #F37123;
   --button-color: #B5866E;
   --button-color-success: #00B596;
+  --carousel-heigth: 40vh;
+  --carousel-font-size-title: 2.5rem;
+  --carousel-font-size-desc: 1.5rem;
 }
 body {
   margin: 0;
@@ -14,7 +17,6 @@ body {
   color: var(--font-color);
   font-family: 'Open Sans', sans-serif;
   font-family: 'Roboto', sans-serif;
-  
 }
 a {
   color: var(--link-color);
@@ -61,21 +63,21 @@ a {
   justify-content: space-between;
 }
 .carousel-height {
-  height: 40vh;
-  max-height: 40vh;
+  height: var(--carousel-heigth);
+  max-height: var(--carousel-heigth);
 }
 .carousel-img {
-  min-height: 40vh;
+  min-height: var(--carousel-heigth);
 }
 .carousel-title {
   font-weight: bold;
   text-shadow: 2px 2px 4px #000000;
-  font-size: 2.5rem;
+  font-size: var(--carousel-font-size-title);
 }
 .carousel-description {
   font-weight: bold;
   text-shadow: 2px 2px 4px #000000;
-  font-size: 1.5rem;
+  font-size: var(--carousel-font-size-desc);
 }
 .text-align-center {
   text-align: center;
@@ -86,9 +88,13 @@ a {
 .main {
   min-height: 19.5rem;
 }
-@media only screen and (max-width: 991) {}
 @media only screen and (max-width: 574px) {
   .card-width {
-    width: 100%;
+    width: 90%;
+  }
+  :root {
+    --carousel-heigth: 30vh;
+    --carousel-font-size-title: 1.5rem;
+    --carousel-font-size-desc: 1rem;
   } 
 }
