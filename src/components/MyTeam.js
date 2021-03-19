@@ -9,10 +9,16 @@ import {
  
 } from '../commons/utils';
 import { useImagesLoaded } from '../hooks/useImagesLoaded';
+import LoadingSpinner from './LoadingSpinner';
 
 const MyTeam = ({handlerTeamAmount}) => {
   const [team, setTeam] = useState([]);
-  const [ setTotalImages, setImageLoaded, allImagesDone ] = useImagesLoaded();
+  const [ 
+    setTotalImages, 
+    setImageLoaded, 
+    allImagesDone,
+    porc, 
+  ] = useImagesLoaded();
   
   useEffect(() => {
     setTeam(getLocalStorageTeam());
@@ -24,13 +30,12 @@ const MyTeam = ({handlerTeamAmount}) => {
   }, [team]);
   return (
     <>
-      { team.length > 0 &&
+      { 
+        team.length > 0 &&
         <div className="team-gallery">
         {
             !allImagesDone && 
-            <Spinner animation="border" role="status">
-              <span className="sr-only">Loading...</span>
-            </Spinner>
+            <LoadingSpinner porc={porc}/>
           }
           <div className={ allImagesDone ? 'gallery-show' : 'd-none'}>
             <h2 className="display-5 pt-4">My Dream Team!</h2>
