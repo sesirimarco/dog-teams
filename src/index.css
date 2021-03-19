@@ -98,7 +98,7 @@ a {
     --carousel-font-size-desc: 1rem;
   } 
 }
-/*loading gallery animation*/
+/*loading gallery animation breed and team*/
 .gallery-show {
   animation-name: fadeIn;
   animation-duration: 4s;
@@ -107,9 +107,14 @@ a {
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
-.breed-gallery {
+.team-gallery, .breed-gallery {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.team-need-more-player{
+  display: flex;
   justify-content: center;
   align-items: center;
 }
