@@ -3,7 +3,7 @@ export const useImagesLoaded = () => {
   const [loadedImages, setLoadedImages] = useState(0);
   const [totalImages, setTotalImagesToLoad] = useState(0);
   const [allImagesDonde, setAllImagesDonde] = useState(false);
-
+  
   const setImageLoaded = useCallback(() => {
     setLoadedImages(loadedImages + 1);
   });
@@ -15,5 +15,13 @@ export const useImagesLoaded = () => {
       setAllImagesDonde(true);
     }
   }, [loadedImages]);
-  return [setTotalImages, setImageLoaded, allImagesDonde];
+  const calcPorc = (total, partial) => {
+    if(total > 0 && partial > 0){
+      return Math.round(loadedImages * 100 / totalImages) < 10 
+      ? '0' + Math.round(loadedImages * 100 / totalImages)
+      : Math.round(loadedImages * 100 / totalImages)
+    } 
+    
+  }
+  return [setTotalImages, setImageLoaded, allImagesDonde, calcPorc(totalImages, loadedImages)];
 };

@@ -1,9 +1,9 @@
 import { useEffect, useState, Fragment } from 'react';
+import { useImagesLoaded } from '../hooks/useImagesLoaded';
 import { useParams } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import CardColumns from 'react-bootstrap/CardColumns';
 import Button from 'react-bootstrap/Button';
-import Spinner from 'react-bootstrap/Spinner';
 import { getAllImagesFromBreed } from '../commons/appServices';
 import { 
   capitalizeText, 
@@ -14,13 +14,17 @@ import {
   checkMaxDogByTeam, 
   checkMaxBreeds,
 } from '../commons/utils';
-import { useImagesLoaded } from '../hooks/useImagesLoaded';
-//TODO: loading for images
+import LoadingSpinner from '../components/LoadingSpinner';
 const Breed = ({handlerTeamAmount}) => {
   
   const { name } = useParams();
   const [ images, setImages ] = useState([]);
-  const [ setTotalImages, setImageLoaded, allImagesDone ] = useImagesLoaded();
+  const [ 
+    setTotalImages, 
+    setImageLoaded, 
+    allImagesDone, 
+    porc, 
+  ] = useImagesLoaded();
   const [ team, setTeam ] = useState([]);
   const idBreedPrefix = getBreedAndSubBreed(name, '_', '-');
   const MAX_DOGS_BY_TEAM = 10;
@@ -67,9 +71,7 @@ const Breed = ({handlerTeamAmount}) => {
       <div className="breed-gallery">
         {
           !allImagesDone && 
-          <Spinner animation="border" role="status">
-            <span className="sr-only">Loading...</span>
-          </Spinner>
+          <LoadingSpinner porc={porc}/>
         }
         <div className={ allImagesDone ? 'gallery-show' : 'd-none'}>
           <h2 className="display-5 pt-4 d-none">{capitalizeText(getBreedAndSubBreed(name, ' ', '-'))}</h2>
