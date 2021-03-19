@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import CardColumns from 'react-bootstrap/CardColumns';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 import { getAllImagesFromBreed } from '../commons/appServices';
 import { 
   capitalizeText, 
@@ -13,12 +14,13 @@ import {
   checkMaxDogByTeam, 
   checkMaxBreeds,
 } from '../commons/utils';
-
+import { useImagesLoaded } from '../hooks/useImagesLoaded';
 //TODO: loading for images
 const Breed = ({handlerTeamAmount}) => {
   
   const { name } = useParams();
   const [ images, setImages ] = useState([]);
+  const [ setTotalImages, setImageLoaded, allImagesDone ] = useImagesLoaded();
   const [ team, setTeam ] = useState([]);
   const idBreedPrefix = getBreedAndSubBreed(name, '_', '-');
   const MAX_DOGS_BY_TEAM = 10;
@@ -27,7 +29,10 @@ const Breed = ({handlerTeamAmount}) => {
   useEffect(() => {
     setTeam(getLocalStorageTeam());
     getAllImagesFromBreed(name)
-    .then(images => setImages(images));
+    .then(images => {
+      setImages(images);
+      setTotalImages(images.length);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps,
   }, []);
   
@@ -59,40 +64,55 @@ const Breed = ({handlerTeamAmount}) => {
   };
   return (
     <>
-      <h2 className="display-5 pt-4">{capitalizeText(getBreedAndSubBreed(name, ' ', '-'))}</h2>
-      <CardColumns className="pt-4 text-align-center">
+      <div className="breed-gallery">
         {
-          images.length > 0 &&
-          images.map((img, index) => (
-            <Fragment key={idBreedPrefix + '_' + index}>
-              <Card border="secondary card-width">
-                <Card.Img variant="top" src={img} />
-                <Card.Body>
-                  {
-                    team.find(dog => (dog.id === idBreedPrefix + '_' + index))
-                    ? <Button 
-                        className="btn-success"
-                        block
-                        onClick={() => {}}
-                      >In your team</Button>
-                    : <Button 
-                        variant="secondary" 
-                        block
-                        onClick={() => {
-                          handlerAddDog({
-                            breed: idBreedPrefix, 
-                            img,
-                            id: idBreedPrefix + '_' + index,
-                          })
-                        }}
-                      >Add to my team</Button>
-                  }
-                </Card.Body>
-              </Card>
-            </Fragment> 
-          ))
+          !allImagesDone && 
+          <Spinner animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
         }
-      </CardColumns>
+        <div className={ allImagesDone ? 'gallery-show' : 'd-none'}>
+          <h2 className="display-5 pt-4 d-none">{capitalizeText(getBreedAndSubBreed(name, ' ', '-'))}</h2>
+          <CardColumns className={`pt-4 text-align-center`}>
+            {
+              images.length > 0 &&
+              images.map((img, index) => (
+                <Fragment key={idBreedPrefix + '_' + index}>
+                  <Card border="secondary card-width">
+                    <Card.Img 
+                      variant="top" 
+                      src={img} 
+                      onLoad={setImageLoaded}
+                      onError={setImageLoaded}
+                    />
+                    <Card.Body>
+                      {
+                        team.find(dog => (dog.id === idBreedPrefix + '_' + index))
+                        ? <Button 
+                            className="btn-success"
+                            block
+                            onClick={() => {}}
+                          >In your team</Button>
+                        : <Button 
+                            variant="secondary" 
+                            block
+                            onClick={() => {
+                              handlerAddDog({
+                                breed: idBreedPrefix, 
+                                img,
+                                id: idBreedPrefix + '_' + index,
+                              })
+                            }}
+                          >Add to my team</Button>
+                      }
+                    </Card.Body>
+                  </Card>
+                </Fragment> 
+              ))
+            }
+          </CardColumns>
+        </div>
+      </div>
     </>
   )
 };
