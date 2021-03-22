@@ -2,7 +2,6 @@ import { useState, useEffect, Fragment } from 'react';
 import Card from 'react-bootstrap/Card';
 import CardColumns from 'react-bootstrap/CardColumns';
 import Button from 'react-bootstrap/Button';
-import Spinner from 'react-bootstrap/Spinner';
 import { 
   getLocalStorageTeam,
   removeDogFromMyTeam,
@@ -33,7 +32,7 @@ const MyTeam = ({handlerTeamAmount}) => {
       { 
         team.length > 0 &&
         <div className="team-gallery">
-        {
+          {
             !allImagesDone && 
             <LoadingSpinner porc={porc}/>
           }
@@ -48,7 +47,7 @@ const MyTeam = ({handlerTeamAmount}) => {
                           variant="top" 
                           src={img} 
                           onLoad={setImageLoaded}
-                          onError={setImageLoaded}
+                          onError={setImageLoaded} /*TODO: show default thumbnail when image load get error*/
                         />
                         <Card.Body>
                           {
@@ -60,14 +59,12 @@ const MyTeam = ({handlerTeamAmount}) => {
                                   setTeam(getLocalStorageTeam());
                                   handlerTeamAmount(team.length);
                                 }}
-                            >Remove me!</Button>
+                            >Gimme a break!</Button>
                           }
                         </Card.Body>
                       </Card>
                     </Fragment> 
                   ))
-                
-                
               }
             </CardColumns>
           </div>
