@@ -99,7 +99,14 @@ a {
   } 
 }
 /*loading gallery animation breed and team*/
-.gallery-show {
+.main-home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 20vh;
+  min-width: 100%;
+}
+.gallery-show, .main-home-show-animation {
   animation-name: fadeIn;
   animation-duration: 4s;
 }

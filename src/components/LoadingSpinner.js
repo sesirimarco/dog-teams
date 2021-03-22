@@ -5,7 +5,11 @@ const LoadingSpinner = ({porc}) => {
       <Spinner animation="border" role="status">
         <span className="sr-only">Loading...</span>
       </Spinner>
-      <div className="spinner-label">{porc}</div>
+      {
+        porc &&
+        <div className="spinner-label">{porc}</div>
+      }
+      
     </div>
   )
 };
