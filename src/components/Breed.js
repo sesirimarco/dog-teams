@@ -95,76 +95,80 @@ const Breed = ({handlerTeamAmount}) => {
   };
   return (
     <>
-      {error ? (
-        <>
-          <ModalInfo
-            show={showModal}
-            title={error.title}
-            description={error.description}
-            handleClose={() => {
-              setShowModal(false);
-            }}
-            type={error.type}
-          />
-          <GoBack path="/" alignItems="center" justifyContent="center" />
-        </>
-      ) : (
-        <div className="breed-gallery">
-          {
-            !allImagesDone && 
-            <LoadingSpinner porc={porc} />
-          }
-          <div className={allImagesDone ? 'gallery-show' : 'd-none'}>
-            <h2 className="display-5 pt-4">
-              {capitalizeText(getBreedAndSubBreed(name, ' ', '-'))}
-            </h2>
-            <CardColumns className={`pt-4 text-align-center`}>
-              {
-                images.map((img, index) => (
-                  <Fragment key={idBreedPrefix + '_' + index}>
-                    <Card border="secondary card-width">
-                      <Card.Img
-                        variant="top"
-                        alt={idBreedPrefix}
-                        src={img}
-                        onLoad={setImageLoaded}
-                        onError={setImageLoaded} //TODO: Hide Card if image get error
-                      />
-                      <Card.Body>
-                        {team.find(
-                          (dog) => dog.id === idBreedPrefix + '_' + index
-                        ) ? (
-                          <Button
-                            className="btn-success"
-                            block
-                            onClick={() => {}}
-                          >
-                            In your team
-                          </Button>
-                        ) : (
-                          <Button
-                            variant="secondary"
-                            block
-                            onClick={() => {
-                              handlerAddDog({
-                                breed: idBreedPrefix,
-                                img,
-                                id: idBreedPrefix + '_' + index,
-                              });
-                            }}
-                          >
-                            Add to my team
-                          </Button>
-                        )}
-                      </Card.Body>
-                    </Card>
-                  </Fragment>
-                ))
-              }
-            </CardColumns>
-          </div>
+      {
+        error 
+        ? <>
+            <ModalInfo
+              show={showModal}
+              title={error.title}
+              description={error.description}
+              handleClose={() => {
+                setShowModal(false);
+              }}
+              type={error.type}
+            />
+            {
+              error.type === 'error' &&
+              <GoBack path="/" alignItems="center" justifyContent="center" />
+            }
+          </>
+        : ''
+      }
+      <div className="breed-gallery">
+        {
+          !allImagesDone && !error && /* Hide loading on error response*/
+          <LoadingSpinner porc={porc} />
+        }
+        <div className={allImagesDone ? 'gallery-show' : 'd-none'}>
+          <h2 className="display-5 pt-4">
+            {capitalizeText(getBreedAndSubBreed(name, ' ', '-'))}
+          </h2>
+          <CardColumns className={`pt-4 text-align-center`}>
+            {
+              images.map((img, index) => (
+                <Fragment key={idBreedPrefix + '_' + index}>
+                  <Card border="secondary card-width">
+                    <Card.Img
+                      variant="top"
+                      alt={idBreedPrefix}
+                      src={img}
+                      onLoad={setImageLoaded}
+                      onError={setImageLoaded} //TODO: Hide Card if image get error
+                    />
+                    <Card.Body>
+                      {team.find(
+                        (dog) => dog.id === idBreedPrefix + '_' + index
+                      ) ? (
+                        <Button
+                          className="btn-success"
+                          block
+                          onClick={() => {}}
+                        >
+                          In your team
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="secondary"
+                          block
+                          onClick={() => {
+                            handlerAddDog({
+                              breed: idBreedPrefix,
+                              img,
+                              id: idBreedPrefix + '_' + index,
+                            });
+                          }}
+                        >
+                          Add to my team
+                        </Button>
+                      )}
+                    </Card.Body>
+                  </Card>
+                </Fragment>
+              ))
+            }
+          </CardColumns>
         </div>
-      )}
+      </div>
     </>
   );
 };
