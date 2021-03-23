@@ -4,6 +4,7 @@
   --font-color: #54433A;
   --font-color-light: #FFE8D2;
   --link-color: #F37123;
+  --budget-bg: #F37123;
   --button-color: #B5866E;
   --button-color-success: #00B596;
   --carousel-heigth: 40vh;
@@ -51,9 +52,30 @@ a {
   padding: 1rem;;
 }
 .nav-brand-my-team {
+  position: relative;
   font-size: 1rem;
   padding: 1rem;
   font-weight: 500;
+}
+[data-notification-hidden="true"].nav-brand-my-team::before  {
+  display: none!important;
+}
+.nav-brand-my-team::before {
+  content: attr(data-notification-amount);
+  background-color: var(--budget-bg);
+  color: var(--font-color-light);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 88%;
+  top:32%;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  font-size: 0.5rem;
+  animation-name: fadeIn;
+  animation-duration: 1s;
 }
 .nav-brand-my-team-amount {
   font-size: 0.8rem;

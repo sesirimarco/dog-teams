@@ -17,13 +17,8 @@ const Header = ({teamAmount}) => {
         <span className="nav-brand-title">Dog Team</span>
       </Link>
       <Nav>
-        <Link to="/my-team" className="navbar-brand nav-brand-my-team">
+        <Link to="/my-team" className="navbar-brand nav-brand-my-team"  data-notification-hidden={teamAmount ? "false": "true"} data-notification-amount={teamAmount}>
           My Team
-          {
-            teamAmount !== 0 &&
-            <span className="nav-brand-my-team-amount">({teamAmount})</span>
-          }
-          
         </Link>
       </Nav>
     </Navbar>
