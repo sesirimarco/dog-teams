@@ -12,30 +12,33 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import { TeamContext } from './contexts/TeamContext';
 
 function App() {
   const [teamAmount, setTeamAmount] = useState(0);
   return (
     <Router>
-      <Container className="container-heigth">
-        <Header teamAmount={teamAmount}/>
-        <Switch>
-          <Route exact path="/">
-            <CarouselHead />
-            <Main />
-          </Route>
-          <Router path="/my-team">
-            <MyTeam handlerTeamAmount={(teamAmount) => setTeamAmount(teamAmount)}/>
-          </Router>
-          <Route path="/breed/:name">
-            <Breed handlerTeamAmount={(teamAmount) => setTeamAmount(teamAmount)}/>
-          </Route>
-          <Route path="*">
-            <PageNotFound />
-          </Route>
-        </Switch>
-        <Footer />
-      </Container> 
+      <TeamContext.Provider value={{teamAmount, setTeamAmount}}>
+        <Container className="container-heigth">
+          <Header/>
+          <Switch>
+            <Route exact path="/">
+              <CarouselHead />
+              <Main />
+            </Route>
+            <Router path="/my-team">
+              <MyTeam />
+            </Router>
+            <Route path="/breed/:name">
+              <Breed />
+            </Route>
+            <Route path="*">
+              <PageNotFound />
+            </Route>
+          </Switch>
+          <Footer />
+        </Container> 
+      </TeamContext.Provider>
     </Router>
   );
 }
