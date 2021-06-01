@@ -1,4 +1,4 @@
-import { useEffect, useState, Fragment } from 'react';
+import { useEffect, useState, Fragment, useContext } from 'react';
 import { useImagesLoaded } from '../hooks/useImagesLoaded';
 import { useParams } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
@@ -17,9 +17,10 @@ import {
 import LoadingSpinner from '../components/LoadingSpinner';
 import ModalInfo from '../components/ModalInfo';
 import GoBack from '../components/GoBack';
+import { TeamContext } from '../contexts/TeamContext';
 
-const Breed = ({handlerTeamAmount}) => {
-  
+const Breed = () => {
+  const { setTeamAmount} = useContext(TeamContext);
   const { name } = useParams();
   const [images, setImages] = useState([]);
   const [error, setError] = useState(null);
@@ -56,7 +57,7 @@ const Breed = ({handlerTeamAmount}) => {
   }, []);
   
   useEffect(() => {
-      handlerTeamAmount(team.length);
+      setTeamAmount(team.length);
       // eslint-disable-next-line react-hooks/exhaustive-deps,
   }, [team]);
 

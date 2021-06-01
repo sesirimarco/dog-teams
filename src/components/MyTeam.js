@@ -1,4 +1,4 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect, Fragment, useContext } from 'react';
 import Card from 'react-bootstrap/Card';
 import CardColumns from 'react-bootstrap/CardColumns';
 import Button from 'react-bootstrap/Button';
@@ -9,8 +9,10 @@ import {
 } from '../commons/utils';
 import { useImagesLoaded } from '../hooks/useImagesLoaded';
 import LoadingSpinner from './LoadingSpinner';
+import { TeamContext } from '../contexts/TeamContext';
 
-const MyTeam = ({handlerTeamAmount}) => {
+const MyTeam = () => {
+  const { setTeamAmount } = useContext(TeamContext);
   const [team, setTeam] = useState([]);
   const [ 
     setTotalImages, 
@@ -23,7 +25,7 @@ const MyTeam = ({handlerTeamAmount}) => {
     setTeam(getLocalStorageTeam());
   }, []);
   useEffect(() => {
-      handlerTeamAmount(team.length);
+      setTeamAmount(team.length);
       setTotalImages(team.length);
       // eslint-disable-next-line react-hooks/exhaustive-deps,
   }, [team]);
@@ -57,7 +59,7 @@ const MyTeam = ({handlerTeamAmount}) => {
                                 onClick={() => {
                                   removeDogFromMyTeam(id);
                                   setTeam(getLocalStorageTeam());
-                                  handlerTeamAmount(team.length);
+                                  setTeamAmount(team.length);
                                 }}
                             >Gimme a break!</Button>
                           }

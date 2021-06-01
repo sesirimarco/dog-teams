@@ -1,9 +1,13 @@
-import React from 'react-dom';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import { TeamContext } from '../contexts/TeamContext';
 
-const Header = ({teamAmount}) => {
+
+const Header = () => {
+ const { teamAmount } = useContext(TeamContext);
+
   return (
     <Navbar className="nav-align-items nav-bg">
       <Link to="/" className="navbar-brand">
@@ -17,7 +21,12 @@ const Header = ({teamAmount}) => {
         <span className="nav-brand-title">Dog Team</span>
       </Link>
       <Nav>
-        <Link to="/my-team" className="navbar-brand nav-brand-my-team"  data-notification-hidden={teamAmount ? "false": "true"} data-notification-amount={teamAmount}>
+        <Link 
+          to="/my-team" 
+          className="navbar-brand nav-brand-my-team"  
+          data-notification-hidden={teamAmount ? "false": "true"} 
+          data-notification-amount={teamAmount}
+        >
           My Team
         </Link>
       </Nav>
